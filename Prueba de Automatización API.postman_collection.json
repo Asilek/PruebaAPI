@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "10976c12-f3a4-4925-8912-65d18af77acd",
+		"name": "Prueba de Automatización API",
+		"description": "Prueba de conocimientos Joasmary Perales",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Método GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "26b032f3-ee67-42f7-bc24-035cee5dad70",
+						"exec": [
+							"pm.test(\"Código de Respuesta\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Contiene JSON Válido\", () => {",
+							"    // HTTP good, but contents cannot say error ",
+							"    pm.response.to.have.jsonBody(\"url\");",
+							"    pm.response.to.have.jsonBody(\"forks_url\");",
+							"    pm.response.to.have.jsonBody(\"commits_url\");",
+							"    pm.response.to.have.jsonBody(\"id\");",
+							"    pm.response.to.have.jsonBody(\"node_id\");",
+							"    pm.response.to.have.jsonBody(\"git_pull_url\");",
+							"    pm.response.to.have.jsonBody(\"git_push_url\");",
+							"    pm.response.to.have.jsonBody(\"html_url\");",
+							"    pm.response.to.have.jsonBody(\"files\");",
+							"    pm.response.to.have.jsonBody(\"public\");",
+							"    pm.response.to.have.jsonBody(\"created_at\");",
+							"    pm.response.to.have.jsonBody(\"updated_at\");",
+							"    pm.response.to.have.jsonBody(\"description\");",
+							"    pm.response.to.have.jsonBody(\"comments\");",
+							"    pm.response.to.have.jsonBody(\"user\");",
+							"    pm.response.to.have.jsonBody(\"comments_url\");",
+							"    pm.response.to.have.jsonBody(\"owner\");",
+							"    pm.response.to.have.jsonBody(\"fork_of\");",
+							"    pm.response.to.have.jsonBody(\"forks\");",
+							"    pm.response.to.have.jsonBody(\"history\");",
+							"    pm.response.to.have.jsonBody(\"truncated\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.github.com/gists/45",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"gists",
+						"45"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Método GET Comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d602c20-32ca-49e2-bbbd-79888149f96b",
+						"exec": [
+							"pm.test(\"Código de Respuesta 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Respuesta menor a 500\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.github.com/gists/45/comments",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"gists",
+						"45",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Método POST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b8268cee-22f7-458b-938e-b2d7e763f1d9",
+						"exec": [
+							"",
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"",
+							"pm.test(\"Contiene JSON Válido\", () => {",
+							"    // HTTP good, but contents cannot say error ",
+							"    pm.response.to.have.jsonBody(\"message\");",
+							"    pm.response.to.have.jsonBody(\"documentation_url\");",
+							"    ",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"body\": \"Aqui el comentario\"\r\n}"
+				},
+				"url": {
+					"raw": "https://api.github.com/gists/33/comments",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"gists",
+						"33",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
